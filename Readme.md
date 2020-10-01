@@ -15,12 +15,12 @@
 * Bahaar's Sanctum
 * Rampaging RK-9 Kennel
 * RK-9 Kennel
-* Ghillie
+* Ghillie (Tp Last boss + auto reset when you re-use the scroll)
 
 ## Supported Ace Dungeons:
-Baraco's Trial (Tp last boss + auto reset)
-Akasha's Trial (Tp last boss + auto reset)
-Lilith's Trial (Tp last boss)
+* Baraco's Trial (Tp last boss + auto reset)
+* Akasha's Trial (Tp last boss + auto reset)
+* Lilith's Trial (Tp last boss)
 ---
 
 ## Command
