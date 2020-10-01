@@ -11,6 +11,7 @@ module.exports = function Redirect(mod) {
       loot,
       zone,
       RKH,
+      vsn,
       hw,
       bahaar,
       banyaka = 81301,
@@ -20,6 +21,8 @@ module.exports = function Redirect(mod) {
   const hwtp = new Vec3(21222, 5919, 6216);  //base pos book tp
   const bahaarH = new Vec3(115023, 90044, 6377); //base pos H tp
   const rkskip = new Vec3(-43963, 48750, 1); // Skip 1st boss RK9 HM / Rampage RK9 HM
+  const vsnm = new Vec3(43948, -134721, 29070)
+  const vslast = new Vec3(39581, -112922, 17213)
   const chests = [81341, 81342];	
   // open world
   mod.hook('S_SPAWN_ME', 3, event => {
@@ -32,6 +35,14 @@ module.exports = function Redirect(mod) {
     event.loc = new Vec3(115321, 96917, 7196) // Bahaar portal
     return true
     }
+    if (RKH && RKHM.dist3D(event.loc) <= 5){
+    event.loc = new Vec3(-41392, 40629, -953) //TP enter
+    return true	    
+    }
+    if (vsn && vsnm.dist3D(event.loc) <= 5){
+    event.loc = new Vec3(44353, -126459, 16788) //TP enter
+    return true	    
+      }
   });
 // dungeon
   mod.hook('S_SPAWN_ME', 3, event => {
@@ -80,11 +91,7 @@ module.exports = function Redirect(mod) {
         case 9735: // RK9 
             event.loc = new Vec3(-41392, 40629, -953)
             event.w = 1.55
-            return true;  
-        case 3034: // RAMPAGING RK9 HM
-            event.loc = new Vec3(-41392, 40629, -953)   
-            event.w = 1.55
-            return true;           			
+            return true;            			
         default: return;
     }
 });
@@ -127,7 +134,7 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
   }
   });	
 
-  function TPInstant() {
+  function pylon() {
     if (RKH){
 		mod.toClient('S_INSTANT_MOVE', 3, {
 			gameId: mod.game.me.gameId,
@@ -137,9 +144,22 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
     sendMessage('Skip RK9 HM 1st Boss');
     sendMessage('back normally and click with your mouse to tp at the 2nd boss');
   } else { sendMessage('Not in RH9 HM')}
-	}
+  }
+  
+  function last() {
+    if (vsn){
+		mod.toClient('S_INSTANT_MOVE', 3, {
+			gameId: mod.game.me.gameId,
+			loc: vslast,
+			w: 3.12
+    });
+    sendMessage('Last Boss Veliks Sanctuary');
+  } else { sendMessage('Not in Veliks Sanctuary')}
+  }
+  
 
   mod.hook('S_LOAD_TOPO', 3, event => {
+    vsn = (mod.game.me.zone === 9781)
     bahaar = (event.zone === 7004)
     hw = (event.zone === 7031)
     zone = event.zone;
@@ -154,7 +174,10 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
     sendMessage(enabled ? 'Redirect enabled.' : 'Redirect disabled.');
   },    
   'rk': () => {
-    TPInstant();
+    pylon();
+},
+'vs': () => {
+  last();
 }
 });
   
