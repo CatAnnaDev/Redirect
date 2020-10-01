@@ -2,82 +2,130 @@ const Vec3 = require('tera-vec3');
 const config = require("./config.json");
 
 module.exports = function Redirect(mod) {
+
+ const blacklist = [9713];
+ const whitelist = [9031, 9032, 3016];
  const command = mod.command || mod.require.command;
 
   let enabled = config.enabled,
-      bahaar,
+      loot,
+      zone,
+      RKH,
       hw,
-      FA,
-      FAA,
-      FAAH,
-      DA,
-      DAH,
-      bah,
-      RK,
-      RKH
+      bahaar,
+      banyaka = 81301,
+	    reset = false;
 
-  // open world
   const hwredeem = new Vec3(22205, 4870, 6191);  //base pos H tp
   const hwtp = new Vec3(21222, 5919, 6216);  //base pos book tp
   const bahaarH = new Vec3(115023, 90044, 6377); //base pos H tp
-
-  // dungeon
-  const slayer = new Vec3(50616, 69430, -11881 ); // FA SLAYER
-  const brawlernm = new Vec3(50692, 84802, -11881); // FAA BRAWLER
-  const brawlerhm = new Vec3(50692, 84802, -11881); // FAA BRAWLER HM
-  const DANM = new Vec3(-117790, 130697, 21016); // DRAAKON ARENA 
-  const DAHM = new Vec3(-117790, 130697, 21016); // DRAAKON ARENA HM
-  const bahaarin = new Vec3(-103510, 98460, 3547); // BAHAAR
-  const RKNM = new Vec3(-43486, 40629, -953); // RK9 
-  const RKHM = new Vec3(-43486, 40629, -953); // RAMPAGE RK9 HM
   const rkskip = new Vec3(-43963, 48750, 1); // Skip 1st boss RK9 HM / Rampage RK9 HM
-
-
+  const chests = [81341, 81342];	
+  // open world
   mod.hook('S_SPAWN_ME', 3, event => {
     if (!enabled) return;
-    // open world
     if (hw && hwredeem.dist3D(event.loc) <= 5 || hwtp.dist3D(event.loc) <= 5){
     event.loc = new Vec3(19297, 4132, 6191) //banker
     return true
     }
     if (bahaar && bahaarH.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(115321, 96917, 7196) //TP portal
-    return true
-    }
-    //dungeon
-    if (FA && slayer.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(52261, 69448, -11743) //TP enter
-    return true
-    }
-    if (FAA && brawlernm.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(52276, 84804, -11743) //TP enter
-    return true
-    }
-    if (FAAH && brawlerhm.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(52276, 84804, -11743) //TP enter
-    return true
-    }
-    if (DA && DANM.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(-115911, 130701, 20464) //TP enter
-    return true
-    }
-    if (DAH && DAHM.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(-115911, 130701, 20464) //TP enter
-    return true
-    }
-    if (bah && bahaarin.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(-98216, 99609, 4360) //TP enter
-    return true
-    }
-    if (RK && RKNM.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(-41392, 40629, -953) //TP enter
-    return true
-    }
-    if (RKH && RKHM.dist3D(event.loc) <= 5){
-    event.loc = new Vec3(-41392, 40629, -953) //TP enter
+    event.loc = new Vec3(115321, 96917, 7196) // Bahaar portal
     return true
     }
   });
+// dungeon
+  mod.hook('S_SPAWN_ME', 3, event => {
+    if (!enabled) return;
+    switch(zone) {
+        case 9713: // Ghillie
+            event.loc = new Vec3(52233, 117319, 4382)
+            event.w = 1.5
+            return true;
+        case 9031: // Ace Akasha	
+            event.loc = new Vec3(72424, 133968, -502)
+            event.w = 1.5
+            return true;
+        case 9032: // Ace Baracos
+            event.loc = new Vec3(28214, 178550, -1675)
+            event.w = 1.5
+            return true;
+        case 3016: // Ace Lilith	
+            event.loc = new Vec3(-99600, 58666, 8023)
+            event.w = 1.55
+            return true;
+        case 3027: // FA SLAYER	
+            event.loc = new Vec3(52261, 69448, -11743) 
+            event.w = 1.55
+            return true;
+        case 3103: // FAA BRAWLER	
+            event.loc = new Vec3(52276, 84804, -11743) 
+            event.w = 1.55
+            return true;
+        case 3203: // FAA BRAWLER HM
+            event.loc = new Vec3(52276, 84804, -11743) 
+            event.w = 1.55
+            return true;  
+        case 3202: // DRAAKON ARENA 	
+            event.loc = new Vec3(-115911, 130701, 20464) 
+            event.w = 1.55
+            return true;  
+        case 9044: // DRAAKON ARENA HM	
+            event.loc = new Vec3(-115911, 130701, 20464) 
+            event.w = 1.55
+            return true;  
+        case 9044: // BAHAAR	
+            event.loc = new Vec3(-98216, 99609, 4360)
+            event.w = 1.55
+            return true;  
+        case 9735: // RK9 
+            event.loc = new Vec3(-41392, 40629, -953)
+            event.w = 1.55
+            return true;  
+        case 3034: // RAMPAGING RK9 HM
+            event.loc = new Vec3(-41392, 40629, -953)   
+            event.w = 1.55
+            return true;           			
+        default: return;
+    }
+});
+
+
+mod.hook('S_SPAWN_NPC', 11, event => {
+  if (!enabled) return;
+  if (event.huntingZoneId == 713 && chests.includes(event.templateId)) {
+    reset = true;
+    command.message('Ghillieglade will be reset the next time you enter veliks sanctuary.');
+  }
+});
+
+mod.hook('C_RESET_ALL_DUNGEON', 1, event => {
+  if (!enabled) return;
+  if (mod.game.me.zone == 9713) {
+    reset = false;
+   command.message('Ghillieglade was reset manually.');
+  }
+});
+
+mod.hook('S_SPAWN_DROPITEM', 8, event => {
+  if(!(blacklist.indexOf(event.item) > -1)) loot[event.gameId.toString()] = 1;
+});
+
+mod.hook('S_DESPAWN_DROPITEM', 4, event => {
+  if(event.gameId.toString() in loot) delete loot[event.gameId.toString()];
+  if(Object.keys(loot).length < 1 && zone > 9000) resetinstance();
+});
+
+function resetinstance() {
+  if (!enabled) return;
+  if((zone == 9031 || zone == 9032 || zone == 3016) && whitelist.indexOf(zone) > -1)  mod.send('C_RESET_ALL_DUNGEON', 1, null);
+}
+
+mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
+  if(!enabled) return;
+    if ((Number.parseInt(event.curHp) / Number.parseInt(event.maxHp)*10000)/100 <= 20 && event.templateId == banyaka) {
+        teleport();
+  }
+  });	
 
   function TPInstant() {
     if (RKH){
@@ -91,18 +139,12 @@ module.exports = function Redirect(mod) {
   } else { sendMessage('Not in RH9 HM')}
 	}
 
-    mod.hook('S_LOAD_TOPO', 3, event => {
-      bahaar = (event.zone === 7004)
-      hw = (event.zone === 7031)
-      FA = (event.zone === 3027)
-      FAA = (event.zone === 3103)
-      FAAH = (event.zone === 3203)
-      DA = (event.zone === 3102)
-      DAH = (event.zone === 3202)
-      bah = (event.zone === 9044)
-      RK = (event.zone === 9735)
-      RKH = (event.zone === 3034)
-    });
+  mod.hook('S_LOAD_TOPO', 3, event => {
+    bahaar = (event.zone === 7004)
+    hw = (event.zone === 7031)
+    zone = event.zone;
+    loot = {};
+});
 
     function sendMessage(msg) { mod.command.message(msg) }
 

@@ -2,8 +2,8 @@
     "disableAutoUpdate": false,
     "name": "Redirect",
     "author": "PsykoDev",
-	"description": "HW & Bahaar redirecting",
-	"options": {
+    "description": "HW & Bahaar redirecting",
+    "options": {
         "niceName": "Redirect",
         "guiName": "Redirect",
         "reloadable": true,
