@@ -5,11 +5,7 @@
     "description": "HW & Bahaar redirecting",
     "options": {
         "niceName": "Redirect",
-        "guiName": "Redirect",
-        "reloadable": true,
-        "settingsVersion": 98.2,
-        "settingsFile": "config.json",
-        "settingsMigrator": "settings_migrator.js"
+        "guiName": "Redirect"
     },
     "servers": ["https://raw.githubusercontent.com/PsykoDev/Redirect/master/"],
     "supportUrl": "https://github.com/PsykoDev/Redirect/issues"

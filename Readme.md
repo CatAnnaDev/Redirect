@@ -15,15 +15,19 @@
 * Bahaar's Sanctum
 * Rampaging RK-9 Kennel
 * RK-9 Kennel
+* Ghillie
 
+## Supported Ace Dungeons:
+Baraco's Trial (Tp last boss + auto reset)
+Akasha's Trial (Tp last boss + auto reset)
+Lilith's Trial (Tp last boss)
 ---
 
 ## Command
 * Type `/8 redirect` to enable or disable the module.
 * Type `/8 redirect rk` to skip the 1st boss in Rampaging RK9 HM.
-
 ---
 
 ## Note
 * Teleport you always at the best place in all supported dungeon 
-* Teleport you in pylon roon in Rampaging RK9 HM to skip the 1st boss( can crash the game cuz "S_INSTANT_MOVE").
+* Teleport you in pylon room in Rampaging RK9 HM to skip the 1st boss( can crash the game cuz "S_INSTANT_MOVE").
