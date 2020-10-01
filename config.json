@@ -1,4 +1,8 @@
 {
-	"enabled": true,
-	"ba": true
+    "version": 98.2,
+    "data": {
+        "enabled": false,
+        "logs": false,
+        "ba": true
+    }
 }
