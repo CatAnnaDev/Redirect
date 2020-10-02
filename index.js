@@ -76,11 +76,11 @@ module.exports = function Redirect(mod) {
             event.loc = new Vec3(52276, 84804, -11743) 
             event.w = 1.55
             return true;  
-        case 3202: // DRAAKON ARENA 	
+        case 3102: // DRAAKON ARENA 	
             event.loc = new Vec3(-115911, 130701, 20464) 
             event.w = 1.55
             return true;  
-        case 9044: // DRAAKON ARENA HM	
+        case 3202: // DRAAKON ARENA HM	
             event.loc = new Vec3(-115911, 130701, 20464) 
             event.w = 1.55
             return true;  
