@@ -23,6 +23,7 @@ module.exports = function Redirect(mod) {
   const rkskip = new Vec3(-43963, 48750, 1); // Skip 1st boss RK9 HM / Rampage RK9 HM
   const vsnm = new Vec3(43948, -134721, 29070)
   const vslast = new Vec3(39581, -112922, 17213)
+  const chestloc = new Vec3(52562, 117921, 4431);
   const chests = [81341, 81342];	
   // open world
   mod.hook('S_SPAWN_ME', 3, event => {
@@ -141,7 +142,16 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
 			reset = false;
 			mod.command.message('Ghillieglade has been reset.');
 		}
-	});
+  });
+
+  function teleport() {
+		mod.send('S_INSTANT_MOVE', 3, {
+				gameId: mod.game.me.gameId,
+				loc: chestloc,
+				w: 0.18
+			});
+		return false;
+	}
 
   function pylon() {
     if (RKH){
