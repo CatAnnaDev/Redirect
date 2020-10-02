@@ -134,6 +134,15 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
   }
   });	
 
+  mod.game.me.on('change_zone', (zone) => {
+		if (!enabled) return;
+		if (zone == 9714 && reset) {
+			mod.send('C_RESET_ALL_DUNGEON', 1, {});
+			reset = false;
+			mod.command.message('Ghillieglade has been reset.');
+		}
+	});
+
   function pylon() {
     if (RKH){
 		mod.toClient('S_INSTANT_MOVE', 3, {
