@@ -183,11 +183,11 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
   
 
   mod.hook('S_LOAD_TOPO', 3, event => {
-    vsn = (mod.game.me.zone === 9781)
+    vsn = (event.zone === 9781)
     bahaar = (event.zone === 7004)
     hw = (event.zone === 7031)
     bahin = (event.zone === 9004)
-    RKN = (rvent.zone === 9735)
+    RKN = (event.zone === 9735)
     RKH = (event.zone === 3034)
     zone = event.zone;
     loot = {};
