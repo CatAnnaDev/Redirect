@@ -21,10 +21,12 @@ module.exports = function Redirect(mod) {
   const hwtp = new Vec3(21222, 5919, 6216);  //base pos book tp
   const bahaarH = new Vec3(115023, 90044, 6377); //base pos H tp
   const rkskip = new Vec3(-43963, 48750, 1); // Skip 1st boss RK9 HM / Rampage RK9 HM
+  const ba = new Vec3(-103510, 98460, 3547);
   const vsnm = new Vec3(43948, -134721, 29070)
   const vslast = new Vec3(39581, -112922, 17213)
   const chestloc = new Vec3(52562, 117921, 4431);
-  const chests = [81341, 81342];	
+  const chests = [81341, 81342];
+
   // open world
   mod.hook('S_SPAWN_ME', 3, event => {
     if (!enabled) return;
@@ -43,7 +45,11 @@ module.exports = function Redirect(mod) {
     if (vsn && vsnm.dist3D(event.loc) <= 5){
     event.loc = new Vec3(44353, -126459, 16788) //TP enter
     return true	    
-      }
+    }
+    if (bahin && ba.dist3D(event.loc) <= 5){
+    event.loc = new Vec3(-98222, 99611, 4360)
+     return true
+    }
   });
 // dungeon
   mod.hook('S_SPAWN_ME', 3, event => {
@@ -83,10 +89,6 @@ module.exports = function Redirect(mod) {
             return true;  
         case 3202: // DRAAKON ARENA HM	
             event.loc = new Vec3(-115911, 130701, 20464) 
-            event.w = 1.55
-            return true;  
-        case 9044: // BAHAAR	
-            event.loc = new Vec3(-98216, 99609, 4360)
             event.w = 1.55
             return true;  
         case 9735: // RK9 
@@ -181,6 +183,7 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
     vsn = (mod.game.me.zone === 9781)
     bahaar = (event.zone === 7004)
     hw = (event.zone === 7031)
+    bahin = (event.zone === 9004)
     zone = event.zone;
     loot = {};
 });
