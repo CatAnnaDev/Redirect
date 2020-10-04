@@ -14,6 +14,7 @@ module.exports = function Redirect(mod) {
       vsn,
       hw,
       bahaar,
+      bahin,
       banyaka = 81301,
 	    reset = false;
 
