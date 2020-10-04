@@ -11,6 +11,7 @@ module.exports = function Redirect(mod) {
       loot,
       zone,
       RKH,
+      RKN,
       vsn,
       hw,
       bahaar,
@@ -23,6 +24,7 @@ module.exports = function Redirect(mod) {
   const bahaarH = new Vec3(115023, 90044, 6377); //base pos H tp
   const rkskip = new Vec3(-43963, 48750, 1); // Skip 1st boss RK9 HM / Rampage RK9 HM
   const ba = new Vec3(-103510, 98460, 3547);
+  const RKNM = new Vec3(-43486, 40629, -953)
   const vsnm = new Vec3(43948, -134721, 29070)
   const vslast = new Vec3(39581, -112922, 17213)
   const chestloc = new Vec3(52562, 117921, 4431);
@@ -39,10 +41,14 @@ module.exports = function Redirect(mod) {
     event.loc = new Vec3(115321, 96917, 7196) // Bahaar portal
     return true
     }
-    if (RKH && RKHM.dist3D(event.loc) <= 5){
+    if (RKH && RKNM.dist3D(event.loc) <= 5){
     event.loc = new Vec3(-41392, 40629, -953) //TP enter
     return true	    
     }
+    if (RKN && RKNM.dist3D(event.loc) <= 5){
+      event.loc = new Vec3(-41392, 40629, -953) //TP enter
+      return true	    
+      }
     if (vsn && vsnm.dist3D(event.loc) <= 5){
     event.loc = new Vec3(44353, -126459, 16788) //TP enter
     return true	    
@@ -90,10 +96,6 @@ module.exports = function Redirect(mod) {
             return true;  
         case 3202: // DRAAKON ARENA HM	
             event.loc = new Vec3(-115911, 130701, 20464) 
-            event.w = 1.55
-            return true;  
-        case 9735: // RK9 
-            event.loc = new Vec3(-41392, 40629, -953)
             event.w = 1.55
             return true;            			
         default: return;
@@ -185,6 +187,8 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
     bahaar = (event.zone === 7004)
     hw = (event.zone === 7031)
     bahin = (event.zone === 9004)
+    RKN = (rvent.zone === 9735)
+    RKH = (event.zone === 3034)
     zone = event.zone;
     loot = {};
 });
