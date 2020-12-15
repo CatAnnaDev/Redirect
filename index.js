@@ -103,7 +103,7 @@ module.exports = function Redirect(mod) {
 });
 
 
-mod.hook('S_SPAWN_NPC', 11, event => {
+mod.hook('S_SPAWN_NPC', 12, event => {
   if (!enabled) return;
   if (event.huntingZoneId == 713 && chests.includes(event.templateId)) {
     reset = true;
@@ -119,7 +119,7 @@ mod.hook('C_RESET_ALL_DUNGEON', 1, event => {
   }
 });
 
-mod.hook('S_SPAWN_DROPITEM', 8, event => {
+mod.hook('S_SPAWN_DROPITEM', 9, event => {
   if(!(blacklist.indexOf(event.item) > -1)) loot[event.gameId.toString()] = 1;
 });
 
