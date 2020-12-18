@@ -14,6 +14,8 @@ module.exports = function Redirect(mod) {
       RKN,
       vsn,
       hw,
+      opi,
+      Velika,
       bahaar,
       bahin,
       banyaka = 81301,
@@ -23,10 +25,12 @@ module.exports = function Redirect(mod) {
   const hwtp = new Vec3(21222, 5919, 6216);  //base pos book tp
   const bahaarH = new Vec3(115023, 90044, 6377); //base pos H tp
   const rkskip = new Vec3(-43963, 48750, 1); // Skip 1st boss RK9 HM / Rampage RK9 HM
+  const velik = new Vec3(1604, 3044, 1744)//Velika base tp 
   const ba = new Vec3(-103510, 98460, 3547);
-  const RKNM = new Vec3(-43486, 40629, -953)
-  const vsnm = new Vec3(43948, -134721, 29070)
-  const vslast = new Vec3(39581, -112922, 17213)
+  const opih = new Vec3(49500, 129289, 3720); // opi HM
+  const RKNM = new Vec3(-43486, 40629, -953);
+  const vsnm = new Vec3(43948, -134721, 29070);
+  const vslast = new Vec3(39581, -112922, 17213);
   const chestloc = new Vec3(52562, 117921, 4431);
   const chests = [81341, 81342];
 
@@ -46,17 +50,25 @@ module.exports = function Redirect(mod) {
     return true	    
     }
     if (RKN && RKNM.dist3D(event.loc) <= 5){
-      event.loc = new Vec3(-41392, 40629, -953) //TP enter
-      return true	    
-      }
+    event.loc = new Vec3(-41392, 40629, -953) //TP enter
+    return true	    
+    }
     if (vsn && vsnm.dist3D(event.loc) <= 5){
     event.loc = new Vec3(44353, -126459, 16788) //TP enter
     return true	    
     }
     if (bahin && ba.dist3D(event.loc) <= 5){
     event.loc = new Vec3(-98222, 99611, 4360)
-     return true
+    return true
     }
+    if (Velika && velik.dist3D(event.loc) <= 5){
+    event.loc = new Vec3(-607, 8777, 2173)
+    return true
+    }
+    if (opi && opih.dist3D(event.loc) <= 5){
+      event.loc = new Vec3(4992, 128393, 3714)
+      return true
+      }
   });
 // dungeon
   mod.hook('S_SPAWN_ME', 3, event => {
@@ -189,6 +201,8 @@ mod.hook('S_BOSS_GAGE_INFO',3,(event) => {
     bahin = (event.zone === 9004)
     RKN = (event.zone === 9735)
     RKH = (event.zone === 3034)
+    Velika = (event.zone === 7005)
+    opi = (event.zone === 3036)
     zone = event.zone;
     loot = {};
 });
