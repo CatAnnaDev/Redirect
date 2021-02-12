@@ -114,14 +114,14 @@ module.exports = function Redirect(mod) {
             event.loc = new Vec3(-115911, 130701, 20464) 
             event.w = 1.55
             return true; 
-        case 3104: // Catalepticon NM
+      /*  case 3104: // Catalepticon NM
             event.loc = new Vec3(-76328, 120434, -1684) 
             event.w = 1.55
             return true;   
         case 3204: // Catalepticon HM
             event.loc = new Vec3(-76328, 120434, -1684) 
             event.w = 1.55
-            return true;              			
+            return true;   */           			
         default: return;
     }
 });
