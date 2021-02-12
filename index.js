@@ -18,6 +18,8 @@ module.exports = function Redirect(mod) {
       Velika,
       bahaar,
       bahin,
+      catanm,
+      catahm,
       banyaka = 81301,
 	    reset = false;
 
@@ -32,6 +34,8 @@ module.exports = function Redirect(mod) {
   const vsnm = new Vec3(43948, -134721, 29070);
   const vslast = new Vec3(39581, -112922, 17213);
   const chestloc = new Vec3(52562, 117921, 4431);
+  const cataNM = new Vec3(-79109, 119405, -1989);
+  const cataHM = new Vec3(-79109, 119405, -1989);
   const chests = [81341, 81342];
 
   // open world
@@ -109,7 +113,15 @@ module.exports = function Redirect(mod) {
         case 3202: // DRAAKON ARENA HM	
             event.loc = new Vec3(-115911, 130701, 20464) 
             event.w = 1.55
-            return true;            			
+            return true; 
+        case 3104: // Catalepticon NM
+            event.loc = new Vec3(-76328, 120434, -1684) 
+            event.w = 1.55
+            return true;   
+        case 3204: // Catalepticon HM
+            event.loc = new Vec3(-76328, 120434, -1684) 
+            event.w = 1.55
+            return true;              			
         default: return;
     }
 });
