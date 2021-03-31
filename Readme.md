@@ -4,6 +4,7 @@
 
 ## Supported Open World:
 * Hightwatch
+* Velika
 * Bahaar entrance 
 
 ## Supported Dungeons:
