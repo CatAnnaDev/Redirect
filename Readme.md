@@ -7,6 +7,7 @@
 * Bahaar entrance 
 
 ## Supported Dungeons:
+* Trick the Tricskter 
 * Forbidden Arena [Hagufna]
 * Forbidden Arena [Undying Warlord] [Normal]
 * Forbidden Arena [Nightmare Undying Warlord] [Hard]
