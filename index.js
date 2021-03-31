@@ -74,10 +74,6 @@ module.exports = function Redirect(mod) {
       event.loc = new Vec3(4992, 128393, 3714)
       return true
     }
-    if (Pla && PlaN.dist3D(event.loc) <= 5) {
-      event.loc = new Vec3(-130560, -53247, 4434)
-      return true
-    }
   })
   // dungeon
   mod.hook("S_SPAWN_ME", 3, (event) => {
@@ -117,6 +113,10 @@ module.exports = function Redirect(mod) {
         return true
       case 3202: // DRAAKON ARENA HM
         event.loc = new Vec3(-115911, 130701, 20464)
+        event.w = 1.55
+        return true
+      case 9070: // Trick the Trickster
+        event.loc = new Vec3(-130560, -53247, 4434)
         event.w = 1.55
         return true
       /*  case 3104: // Catalepticon NM
