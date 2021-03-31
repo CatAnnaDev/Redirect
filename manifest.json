@@ -1,17 +1,16 @@
 {
-    "files": {
-        "Readme.md": "f18120b9e0eb9ecdc349dd5b638e56405e219c0fb1791ccdf464ee342620407b",
-        "index.js": "2381040796d611b253fc91c74dc7543b840725280500f045109596b554f567bf",
-        "module.json": "7a37b0548ce076d488796ddcbeedea4c14690d00929239b6813a543b049d28d9"
-    },
-    "defs": {
-        "C_RESET_ALL_DUNGEON": 1,
-        "S_BOSS_GAGE_INFO": 3,
-        "S_DESPAWN_DROPITEM": 4,
-        "S_INSTANT_MOVE": 3,
-        "S_LOAD_TOPO": 3,
-        "S_SPAWN_DROPITEM": 9,
-        "S_SPAWN_ME": 3,
-        "S_SPAWN_NPC": 12
-    }
+  "files": {
+    "index.js": "c4ebcc8ff89102f914fc7be0ce5921e8a3f5d77b0dc2425cee32b9f3fa77a28a",
+    "module.json": "7a37b0548ce076d488796ddcbeedea4c14690d00929239b6813a543b049d28d9"
+  },
+  "defs": {
+    "C_RESET_ALL_DUNGEON": 1,
+    "S_BOSS_GAGE_INFO": 3,
+    "S_DESPAWN_DROPITEM": 4,
+    "S_INSTANT_MOVE": 3,
+    "S_LOAD_TOPO": 3,
+    "S_SPAWN_DROPITEM": 9,
+    "S_SPAWN_ME": 3,
+    "S_SPAWN_NPC": 12
+  }
 }
